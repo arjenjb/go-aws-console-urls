@@ -10,6 +10,10 @@ type UrlBuilder struct {
 	region string
 }
 
+func NewUrlBuilder(region string) UrlBuilder {
+	return UrlBuilder{region: region}
+}
+
 func (c UrlBuilder) globalBaseUrl() genericUrlBuilder {
 	return c.constructBaseUrl("us-east-1", c.region)
 }
@@ -82,10 +86,6 @@ func (c UrlBuilder) ARN(target arn2.ARN) (string, error) {
 	}
 
 	return "", fmt.Errorf("cannot figure out console url for this ARN %s", target)
-}
-
-func NewConsoleUrlBuilder(region string) UrlBuilder {
-	return UrlBuilder{region: region}
 }
 
 func (c UrlBuilder) HomeUrl() string {
