@@ -1,6 +1,6 @@
 module github.com/arjenjb/go-aws-console-urls
 
-go 1.23.2
+go 1.21
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.32.2
