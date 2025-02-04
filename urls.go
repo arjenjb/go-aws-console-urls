@@ -83,6 +83,14 @@ func (c UrlBuilder) ARN(target arn2.ARN) (string, error) {
 		} else if len(parts) == 2 && parts[0] == "cluster" {
 			return c.RDSDbCluster(parts[1]), nil
 		}
+
+	case "s3":
+		parts := strings.Split(target.Resource, ":")
+		if len(parts) == 1 {
+			return c.S3Bucket(parts[0]), nil
+		} else if len(parts) == 1 {
+			return c.S3Object(parts[0], parts[1]), nil
+		}
 	}
 
 	return "", fmt.Errorf("cannot figure out console url for this ARN %s", target)
